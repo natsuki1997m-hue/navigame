@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>みちをきこう！日本語マップゲーム</title>
+  <link rel="stylesheet" href="style.css?v=25">
+</head>
+<body>
+  <main class="game-shell">
+    <nav class="mode-tabs" aria-label="ゲームモード">
+      <button class="mode-tab active" data-mode="easy" type="button">やさしい</button>
+      <button class="mode-tab" data-mode="hard" type="button">むずかしい</button>
+    </nav>
+
+    <header class="status-panel" aria-live="polite">
+      <div class="score-box">
+        <span class="label">Score</span>
+        <strong id="score">0</strong>
+      </div>
+      <div class="mission-box">
+        <span class="label">目的地</span>
+        <strong id="mission">ゲームを読み込み中...</strong>
+      </div>
+      <div id="message" class="message" role="status"></div>
+    </header>
+
+    <section class="map-frame" aria-label="町マップ">
+      <div id="mapStage" class="map-stage">
+        <img class="town-map" src="town-map.png?v=12" alt="ポケモン風の町マップ">
+        <div id="signalLayer" class="signal-layer" aria-hidden="true"></div>
+        <div id="targetLabel" class="target-label" aria-hidden="true"></div>
+        <div id="player" class="player facing-down" aria-label="プレイヤー"></div>
+      </div>
+    </section>
+
+    <section class="command-panel" aria-label="移動カード">
+      <button class="command-card" data-command="forward">まっすぐ行く</button>
+      <button class="command-card" data-command="turnLeft"><ruby>左<rt>ひだり</rt></ruby>に<ruby>曲<rt>ま</rt></ruby>がる</button>
+      <button class="command-card" data-command="turnRight"><ruby>右<rt>みぎ</rt></ruby>に<ruby>曲<rt>ま</rt></ruby>がる</button>
+      <button class="command-card" data-command="goBack">うしろへ<ruby>行<rt>い</rt></ruby>く</button>
+      <button class="command-card" data-command="cross"><ruby>橋<rt>はし</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>る</button>
+      <button class="command-card" data-command="cornerLeft"><ruby>角<rt>かど</rt></ruby>を<ruby>左<rt>ひだり</rt></ruby>に<ruby>曲<rt>ま</rt></ruby>がる</button>
+      <button class="command-card" data-command="cornerRight"><ruby>角<rt>かど</rt></ruby>を<ruby>右<rt>みぎ</rt></ruby>に<ruby>曲<rt>ま</rt></ruby>がる</button>
+      <button class="command-card hard-command" data-command="crossRoad"><ruby>道<rt>みち</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>る</button>
+      <button class="command-card hard-command" data-command="secondLeft"><ruby>二<rt>ふた</rt></ruby>つ<ruby>目<rt>め</rt></ruby>の<ruby>角<rt>かど</rt></ruby>を<ruby>左<rt>ひだり</rt></ruby>に<ruby>曲<rt>ま</rt></ruby>がる</button>
+      <button class="command-card hard-command" data-command="secondRight"><ruby>二<rt>ふた</rt></ruby>つ<ruby>目<rt>め</rt></ruby>の<ruby>角<rt>かど</rt></ruby>を<ruby>右<rt>みぎ</rt></ruby>に<ruby>曲<rt>ま</rt></ruby>がる</button>
+      <button class="command-card hard-command" data-command="signalLeft"><ruby>一<rt>ひと</rt></ruby>つ<ruby>目<rt>め</rt></ruby>の<ruby>信号<rt>しんごう</rt></ruby>を<ruby>左<rt>ひだり</rt></ruby>に<ruby>曲<rt>ま</rt></ruby>がる</button>
+      <button class="command-card hard-command" data-command="signalRight"><ruby>一<rt>ひと</rt></ruby>つ<ruby>目<rt>め</rt></ruby>の<ruby>信号<rt>しんごう</rt></ruby>を<ruby>右<rt>みぎ</rt></ruby>に<ruby>曲<rt>ま</rt></ruby>がる</button>
+      <button class="command-card undo-card" data-command="undo"><ruby>一<rt>ひと</rt></ruby>つ<ruby>戻<rt>もど</rt></ruby>る</button>
+    </section>
+  </main>
+
+  <script src="game.js?v=25"></script>
+</body>
+</html>
