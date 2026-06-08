@@ -12,7 +12,7 @@ const CONFIG = {
   wrongPenalty: 20,
   clearScore: 500,
   initialNodeId: "center",
-  initialDirection: "down",
+  initialDirection: "up",
   locale: "ja",
   mode: "easy",
   historyLimit: 30
@@ -364,12 +364,12 @@ async function runCommand(commandName) {
   if (state.isMoving || state.isCleared) return;
 
   const commands = {
-    forward: () => moveForward(1),
-    cross: () => moveForward(1),
-    crossRoad: () => moveForward(1),
-    turnLeft: () => turnAndMove("left"),
-    turnRight: () => turnAndMove("right"),
-    goBack: () => goBackAndMove(),
+    forward: () => moveInScreenDirection("up"),
+    cross: () => moveInScreenDirection(state.direction),
+    crossRoad: () => moveInScreenDirection(state.direction),
+    turnLeft: () => moveInScreenDirection("left"),
+    turnRight: () => moveInScreenDirection("right"),
+    goBack: () => moveInScreenDirection("down"),
     cornerLeft: () => turnAtNthCorner(1, "left"),
     cornerRight: () => turnAtNthCorner(1, "right"),
     secondLeft: () => turnAtNthCorner(2, "left"),
@@ -399,8 +399,8 @@ async function turnAndMove(side) {
   return moveForward(1);
 }
 
-async function goBackAndMove() {
-  state.direction = OPPOSITE_DIRECTIONS[state.direction];
+async function moveInScreenDirection(direction) {
+  state.direction = direction;
   elements.message.textContent = "";
   render();
   await wait(90);
